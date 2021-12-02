@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 function useCourse(params) {
   const [reg, setReg] = useState([]);
   const [data, setData] = useState([]);
-  console.log("hello");
 
   useEffect(() => {
     if (reg) {

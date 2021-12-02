@@ -15,14 +15,12 @@ function Admin() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setItems(data);
       });
   }, []);
 
   async function handleClick(e) {
     e.target.disabled = true;
-    console.log(e.target.dataset.id);
 
     fetch("http://localhost:4000/delete", {
       method: "POST",
@@ -47,7 +45,6 @@ function Admin() {
           <div className="profile__name-wrapper">
             <div>
               {items.data?.map((item) => {
-                console.log(item);
                 if (item.is_verified) {
                   return (
                     <li key={item.queue_id}>

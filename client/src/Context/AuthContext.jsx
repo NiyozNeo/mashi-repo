@@ -18,11 +18,14 @@ const Provider = ({ children }) => {
           return res.json();
         })
         .then((data) => {
-          if (!data.message) {
+          if (!data || !data.message) {
             <Redirect to="/login" />;
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          <Redirect to="/login" />;
+        });
     } else {
       <Redirect to="/login" />;
     }

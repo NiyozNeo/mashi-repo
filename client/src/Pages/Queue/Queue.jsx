@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Redirect } from "react-router";
 import useQueue from "../../Hooks/useQueue";
 
 function Queue() {
@@ -25,7 +26,6 @@ function Queue() {
       .then((res) => res.json())
       .then((data) => {
         setqueue(data);
-        console.log(data);
       });
   }, []);
 
@@ -50,6 +50,8 @@ function Queue() {
   const [setReg] = useQueue("post");
   const handleSubmit = (e) => {
     e.preventDefault();
+    let button = document.querySelector("button")
+    button.disabled = true
     const selects = document.querySelectorAll("select");
     let token = localStorage.getItem("token");
     let course = {
@@ -57,6 +59,7 @@ function Queue() {
       category: selects[1].value,
       token,
     };
+    <Redirect to="/queue"/>
     setReg(course);
   };
 
@@ -66,10 +69,8 @@ function Queue() {
         <div className="main">
           <div className="profile__name-wrapper">
             <div>
-              {console.log(queue.data)}
               {queue.data?.length >= 1 ? (
                 <ul>
-                  {console.log(queue)}
                   {queue.data.map((q) => {
                     return (
                       <li key={q.queue_id}>

@@ -15,7 +15,6 @@ function AdminUsers() {
         <div className="main">
           <div className="profile__name-wrapper">
             <ul>
-              {console.log(items)}
               {items.map((user) => {
                 return (
                   <li>

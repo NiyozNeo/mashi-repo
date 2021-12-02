@@ -6,7 +6,6 @@ const Private = ({ path, component, exact }) => {
   const [token] = useAuth();
 
   if (token) {
-    console.log("token");
     return <Route path={path} component={component} exact={exact} />;
   }
   return <Redirect to="/login" />;

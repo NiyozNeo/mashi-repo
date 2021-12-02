@@ -7,7 +7,6 @@ module.exports = {
     try {
       const { username, password, phone, select } = req.body;
       if ((username, password, phone, select)) {
-        console.log("maymun");
         Number(password);
         const salt = await bcrypt.genSalt(10);
         const bcryptPassword = await bcrypt.hash(password, salt);
@@ -25,7 +24,6 @@ module.exports = {
           phone,
           select
         );
-        console.log(newUser);
         if (newUser) {
           res.status(201).json({
             message: "User created",

@@ -15,14 +15,12 @@ function Order() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setqueue(data);
       });
   }, []);
 
   async function handleClick(e) {
     e.target.disabled = true;
-    console.log(e.target.dataset.id);
 
     fetch("http://localhost:4000/update", {
       method: "POST",
@@ -33,7 +31,6 @@ function Order() {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         if (res) {
           <Redirect to="/admins/order" />;
         }

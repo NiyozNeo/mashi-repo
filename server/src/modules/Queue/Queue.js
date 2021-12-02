@@ -16,17 +16,20 @@ module.exports = {
   },
   get: async (req, res) => {
     const { token } = req.headers;
-    let user = verifyUser(JSON.parse(token).token);
+    let user = null
+    try {
+      user = verifyUser(JSON.parse(token).token);
+    } catch (error) {
+      res.status(404)
+      return
+    }
     let data = await model.f(user.user_id);
-    console.log(user);
     if (user.is_admin) {
       let userim = await pg(
         "select * from users where user_id = $1",
         user.user_id
       );
-      console.log(userim);
       let data = await model.all(userim[0].admin_clinic);
-      console.log(data);
       let filtered = data.filter((el) => el.is_verified === false);
       res.status(200).json({ data, allData: filtered });
     } else if (user.user_id) {
